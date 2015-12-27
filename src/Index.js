@@ -5,8 +5,6 @@ import App from './components/App';
 import PoweredBy from './components/Powered-by';
 import About from './components/About';
 
-window.React = React;
-
 render(
   (<Router>
     <Route path="/" component={App}>

@@ -1,37 +1,24 @@
 {
-  "name": "react-starterify",
-  "version": "2.1.4",
-  "description": "React JS application skeleton using Browserify and other awesome tools",
+  "name": "Talks",
+  "version": "0.0.0",
+  "description": "Web App to vote for subjects and plan talks for them.",
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Granze/react-starterify"
+    "url": "https://github.com/tomasAlabes/Talks"
   },
-  "keywords": [
-    "gulp",
-    "react",
-    "browserify",
-    "seed",
-    "boilerplate",
-    "kickstarter",
-    "ES6",
-    "ES2015",
-    "babel",
-    "mocha",
-    "chai"
-  ],
   "scripts": {
     "test": "mocha --reporter nyan --compilers js:babel-core/register --recursive",
     "watch": "gulp watch",
     "build": "gulp build",
     "deploy": "gulp deploy"
   },
-  "author": "Maurizio Mangione",
+  "author": "Tomas Alabes",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Granze/react-starterify/issues"
+    "url": "https://github.com/tomasAlabes/Talks/issues"
   },
-  "homepage": "https://github.com/Granze/react-starterify",
+  "homepage": "https://github.com/tomasAlabes/Talks",
   "dependencies": {
     "history": "^1.17.0",
     "react": "^0.14.0",
