@@ -1,12 +1,12 @@
 import React from 'react';
 import packageJSON from '../../package.json';
 import NewTalk from './NewTalk'
+import NewTopic from './NewTopic'
+import NextTalks from './NextTalks'
+import TopicsList from './TopicsList'
+import Topic from '../model/Topic'
 
-export default class AppComponent extends React.Component {
-
-  constructor(props) {
-    super(props);
-  }
+export default React.createClass({
 
   render() {
     const version = packageJSON.version;
@@ -18,10 +18,19 @@ export default class AppComponent extends React.Component {
         </nav>
 
         <section>
-          <NewTalk />
+          <div className="col-md-8">
+            <NewTopic />
+
+            <TopicsList topics={[new Topic({name:'Javascript'}), new Topic({name:'Angular'})]} />
+
+            <NewTalk />
+          </div>
+          <div className="col-md-4">
+            <NextTalks />
+          </div>
         </section>
 
       </div>
     )
   }
-};
+});

@@ -1,13 +1,12 @@
 import React from 'react';
 
-export default class NextTalksComponent extends React.Component {
+export default React.createClass({
 
-  constructor(props) {
-    super(props);
-    this.state = {
+  getInitialState(){
+    return {
       talks: []
-    };
-  }
+    }
+  },
 
   render() {
 
@@ -15,9 +14,7 @@ export default class NextTalksComponent extends React.Component {
       <div>
         <h2>Next Talks</h2>
 
-
-
       </div>
     )
   }
-};
+});

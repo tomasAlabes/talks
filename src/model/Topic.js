@@ -1,8 +1,9 @@
 export default class Topic {
 
-  constructor(name) {
+  constructor({id, name, likes = 0}) {
+    this.id = id;
     this.name = name;
-    this.likes = 0;
+    this.likes = likes;
   }
 
   addLike() {
