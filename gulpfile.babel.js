@@ -21,7 +21,6 @@ import htmlReplace from 'gulp-html-replace';
 import imagemin from 'gulp-imagemin';
 import pngquant from 'imagemin-pngquant';
 import runSequence from 'run-sequence';
-import ghPages from 'gulp-gh-pages';
 
 const paths = {
   bundle: 'app.js',
@@ -57,7 +56,10 @@ gulp.task('browserSync', () => {
 });
 
 gulp.task('watchify', () => {
-  let bundler = watchify(browserify(opts));
+  // indicated by watchify docs
+  const watchifyOpts = Object.assign({}, {cache: {}, packageCache: {}}, opts);
+
+  let bundler = watchify(browserify(watchifyOpts));
 
   function rebundle() {
     return bundler.bundle()
@@ -65,25 +67,23 @@ gulp.task('watchify', () => {
       .pipe(source(paths.bundle))
       .pipe(buffer())
       .pipe(sourcemaps.init({loadMaps: true}))
-      .pipe(sourcemaps.write('.'))
+      .pipe(sourcemaps.write())
       .pipe(gulp.dest(paths.distJs))
       .pipe(reload({stream: true}));
   }
 
-  bundler.transform(babelify)
-  .on('update', rebundle);
+  bundler.on('update', rebundle);
   return rebundle();
 });
 
 gulp.task('browserify', () => {
   browserify(opts)
-  .transform(babelify)
   .bundle()
   .pipe(source(paths.bundle))
   .pipe(buffer())
   .pipe(sourcemaps.init({loadMaps: true}))
   .pipe(uglify())
-  .pipe(sourcemaps.write('.'))
+  .pipe(sourcemaps.write())
   .pipe(gulp.dest(paths.distJs));
 });
 
@@ -91,7 +91,7 @@ gulp.task('styles', () => {
   gulp.src(paths.srcCss)
   .pipe(sourcemaps.init())
   .pipe(postcss([vars, extend, nested, autoprefixer, cssnano]))
-  .pipe(sourcemaps.write('.'))
+  .pipe(sourcemaps.write())
   .pipe(gulp.dest(paths.dist))
   .pipe(reload({stream: true}));
 });
@@ -121,11 +121,6 @@ gulp.task('lint', () => {
 gulp.task('watchTask', () => {
   gulp.watch(paths.srcCss, ['styles']);
   gulp.watch(paths.srcJsx, ['lint']);
-});
-
-gulp.task('deploy', function() {
-  return gulp.src(paths.distDeploy)
-    .pipe(ghPages());
 });
 
 gulp.task('watch', cb => {
