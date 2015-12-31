@@ -1,6 +1,8 @@
 import React from 'react';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
 import Talk from '../model/Talk';
+import TalkActions from '../actions/TalkActions';
+import Datetime from 'react-datetime';
 
 export default React.createClass({
 
@@ -10,14 +12,15 @@ export default React.createClass({
     return {
       name: '',
       description: '',
-      topics: ''
+      topics: '',
+      date: ''
     };
   },
 
   render() {
 
     return (
-      <form onSubmit={this.createTopic}>
+      <form onSubmit={this.createTalk}>
         <h3>New Talk</h3>
 
         <fieldset className="form-group">
@@ -35,14 +38,19 @@ export default React.createClass({
           <input id="newTalkTopics" className="form-control" type="text" valueLink={this.linkState('topics')} placeholder="javascript,angular" />
         </fieldset>
 
+        <fieldset className="form-group">
+          <label htmlFor="newTalkDate">Date</label>
+          <Datetime />
+        </fieldset>
+
         <button type="submit" className="btn btn-primary">Create Talk</button>
       </form>
     )
   },
 
   createTalk(e){
-    let talk = new Talk({name: this.state.name, description: this.state.description, topics:[]});
     e.preventDefault();
+    TalkActions.create({name: this.state.name, description: this.state.description, topics:[]});
   }
 
 });

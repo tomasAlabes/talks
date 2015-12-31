@@ -57,6 +57,7 @@
     "react-addons-linked-state-mixin": "^0.14.5",
     "react-addons-test-utils": "^0.14.3",
     "react-bootstrap": "^0.28.1",
+    "react-datetime": "^2.0.2",
     "reactify": "^1.1.1",
     "rimraf": "^2.4.3",
     "run-sequence": "^1.1.2",

@@ -1,35 +1,29 @@
 import TalksConstants from '../constants/TalksConstants';
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import {EventEmitter} from 'events';
-import Topic from '../model/Topic';
+import Talk from '../model/Talk';
 
-let _topics = new Map();
+let _talks = new Map();
 const CHANGE_EVENT = 'change';
 
-function create(name) {
+function create(props) {
   var id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36);
-  _topics.set(id, new Topic({
-    id: id,
-    name: name
-  }));
+  props.id = id;
+  _talks.set(id, new Talk(props));
 }
 
 function destroy(id) {
-  delete _topics.delete(id);
+  delete _talks.delete(id);
 }
 
-function like(id){
-  _topics.get(id).addLike();
-}
+const TalksStore = Object.assign({}, EventEmitter.prototype, {
 
-const TopicsStore = Object.assign({}, EventEmitter.prototype, {
-
-  getTopic(id){
-    return _topics.get(id);
+  getTalk(id){
+    return _talks.get(id);
   },
 
   getAll(){
-    return _topics;
+    return _talks;
   },
 
   emitChange() {
@@ -55,21 +49,14 @@ const TopicsStore = Object.assign({}, EventEmitter.prototype, {
 // Register callback to handle all updates
 AppDispatcher.register(function(action) {
 
-  switch(action.actionType) {
-    case TalksConstants.TOPIC_CREATE:
-      let text = action.name;
-      if (text !== '') {
-        create(text);
-        TopicsStore.emitChange();
-      }
+  switch (action.actionType) {
+    case TalksConstants.TALK_CREATE:
+      create(action.props);
+      TalksStore.emitChange();
       break;
-    case TalksConstants.TOPIC_DESTROY:
+    case TalksConstants.TALK_DESTROY:
       destroy(action.id);
-      TopicsStore.emitChange();
-      break;
-    case TalksConstants.TOPIC_LIKE:
-      like(action.id);
-      TopicsStore.emitChange();
+      TalksStore.emitChange();
       break;
 
     default:
@@ -77,4 +64,4 @@ AppDispatcher.register(function(action) {
   }
 });
 
-export default TopicsStore;
+export default TalksStore;

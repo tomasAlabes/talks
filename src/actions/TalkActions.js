@@ -1,21 +1,15 @@
 import TalksConstants from '../constants/TalksConstants';
 import AppDispatcher from '../dispatcher/AppDispatcher';
 
-export default TopicActions = {
+const TalkActions = {
 
-  /**
-   * @param  {string} text
-   */
-  create: function(talk) {
+  create: function(talkProps) {
     AppDispatcher.dispatch({
       actionType: TalksConstants.TALK_CREATE,
-      talk: talk
+      props: talkProps
     });
   },
 
-  /**
-   * @param  {string} id
-   */
   destroy: function(id) {
     AppDispatcher.dispatch({
       actionType: TalksConstants.TALK_DESTROY,
@@ -23,4 +17,6 @@ export default TopicActions = {
     });
   }
 
-}
+};
+
+export default TalkActions

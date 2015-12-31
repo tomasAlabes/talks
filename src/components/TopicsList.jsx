@@ -44,10 +44,6 @@ export default React.createClass({
 
 });
 
-const getTopicState = function(id){
-  return TopicsStore.getTopic(id);
-};
-
 const TopicItem = React.createClass({
 
   getInitialState: function() {
@@ -80,7 +76,7 @@ const TopicItem = React.createClass({
    * Event handler for 'change' events coming from the TopicStore
    */
   _onChange: function() {
-    this.setState({topic: getTopicState(this.props.topic.id)});
+    this.setState({topic: TopicsStore.getTopic(this.props.topic.id)});
   }
 
 
