@@ -1,7 +1,8 @@
 export default class Talk {
 
-  constructor({name, description, topics, date}){
-    this.name = name;
+  constructor({id, title, description, topics, date}){
+    this.id = id;
+    this.title = title;
     this.description = description;
     this.topics = topics;
     this.date = date;

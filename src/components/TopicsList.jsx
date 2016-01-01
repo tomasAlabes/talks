@@ -18,6 +18,10 @@ export default React.createClass({
     TopicsStore.addChangeListener(this._onChange);
   },
 
+  componentWillUnmount: function() {
+    TopicsStore.removeChangeListener(this._onChange);
+  },
+
   render() {
 
     return (
@@ -69,16 +73,12 @@ const TopicItem = React.createClass({
   },
 
   likeTopic() {
-    TopicActions.like(this.props.topic.id);
+    TopicActions.like(this.state.topic.id);
   },
 
-  /**
-   * Event handler for 'change' events coming from the TopicStore
-   */
   _onChange: function() {
-    this.setState({topic: TopicsStore.getTopic(this.props.topic.id)});
+    this.setState({topic: TopicsStore.getTopic(this.state.topic.id)});
   }
-
 
 });
 

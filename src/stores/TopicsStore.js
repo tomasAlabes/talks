@@ -24,7 +24,11 @@ function like(id){
 
 const TopicsStore = Object.assign({}, EventEmitter.prototype, {
 
-  getTopic(id){
+  findByName(name){
+    return Array.from(_topics.values()).filter(topic => topic.name === name);
+  },
+
+getTopic(id){
     return _topics.get(id);
   },
 
