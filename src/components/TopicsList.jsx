@@ -63,7 +63,7 @@ const TopicItem = React.createClass({
   render() {
 
     return (<li className="list-group-item">
-      {this.state.topic.name}
+      {this.state.topic.text}
         <span className="label label-default label-pill pull-xs-right">
           {this.state.topic.likes}
         </span>

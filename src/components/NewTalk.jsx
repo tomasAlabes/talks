@@ -43,17 +43,17 @@ export default React.createClass({
         </fieldset>
 
         <fieldset className="form-group">
+          <label htmlFor="newTalkDate">Date</label>
+          <Datetime value={this.state.date} onChange={this.dateChanged} inputProps={{readOnly:true, required:true}} isValidDate={this.isValidDate} />
+        </fieldset>
+
+        <fieldset className="form-group">
           <label htmlFor="newTalkTopics">Topics</label>
           <ReactTags tags={this.state.talkTopics}
                      suggestions={this.state.suggestions}
                      handleDelete={this.handleDelete}
                      handleAddition={this.handleAddition}
                      handleDrag={this.handleDrag} />
-        </fieldset>
-
-        <fieldset className="form-group">
-          <label htmlFor="newTalkDate">Date</label>
-          <Datetime value={this.state.date} onChange={this.dateChanged} inputProps={{readOnly:true, required:true}} isValidDate={this.isValidDate} />
         </fieldset>
 
         <button type="submit" className="btn btn-primary">Create Talk</button>
@@ -100,13 +100,13 @@ export default React.createClass({
   createTalk(e){
     e.preventDefault();
     //ToDo Topic not found?
-    let topics = this.state.talkTopics.split(',').map(topicName => TopicsStore.findByName(topicName) || TopicActions.create(topicName));
+    let topics = this.state.talkTopics.map(topic => TopicsStore.findByName(topic.text));
     //ToDo check fields not empty
     TalkActions.create({title: this.state.title, description: this.state.description, topics: topics, date: this.state.date});
   },
 
   getStoreTopicsNames() {
-    return this.getAllTopics().map(topic => topic.name);
+    return this.getAllTopics().map(topic => topic.text);
   },
 
   _onChange: function() {

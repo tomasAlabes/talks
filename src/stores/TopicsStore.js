@@ -2,33 +2,49 @@ import TalksConstants from '../constants/TalksConstants';
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import {EventEmitter} from 'events';
 import Topic from '../model/Topic';
+import firebaseConnection from './FirebaseConnection';
+
+const topicsRef = firebaseConnection.child('/topics');
 
 let _topics = new Map();
+
+topicsRef.on('value', function(snapshot) {
+  if (snapshot.exists()) {
+    snapshot.forEach(topic => {
+      // Recreating Topic every time...
+      let receivedTopic = new Topic(topic.val());
+      receivedTopic.id = topic.key();
+      _topics.set(topic.key(), receivedTopic);
+    });
+    console.log('Changes from Firebase!');
+    TopicsStore.emitChange();
+  }
+});
+
 const CHANGE_EVENT = 'change';
 
-function create(name) {
-  var id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36);
-  _topics.set(id, new Topic({
-    id: id,
-    name: name
+function create(text) {
+  topicsRef.push(new Topic({
+    text: text
   }));
 }
 
 function destroy(id) {
-  delete _topics.delete(id);
+  //ToDo firebase
+  _topics.delete(id);
 }
 
 function like(id){
-  _topics.get(id).addLike();
+  topicsRef.child(id).update({likes: ++_topics.get(id).likes});
 }
 
 const TopicsStore = Object.assign({}, EventEmitter.prototype, {
 
-  findByName(name){
-    return Array.from(_topics.values()).filter(topic => topic.name === name);
+  findByName(text){
+    return Array.from(_topics.values()).filter(topic => topic.text === text)[0];
   },
 
-getTopic(id){
+  getTopic(id){
     return _topics.get(id);
   },
 
@@ -59,7 +75,7 @@ getTopic(id){
 // Register callback to handle all updates
 AppDispatcher.register(function(action) {
 
-  switch(action.actionType) {
+  switch (action.actionType) {
     case TalksConstants.TOPIC_CREATE:
       let text = action.name;
       if (text !== '') {

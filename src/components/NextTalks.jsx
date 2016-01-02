@@ -34,11 +34,11 @@ export default React.createClass({
     //filter the past ones
     //order them by date
     let orderedTalks = talks
-      .filter(talk => talk.date.isAfter(new Date()))
+      .filter(talk => talk.moment.isAfter(new Date()))
       .sort((talk1, talk2) => {
-        if (talk1.date.isBefore(talk2.date)) {
+        if (talk1.moment.isBefore(talk2.moment)) {
           return -1;
-        } else if (talk1.date.isAfter(talk2.date)) {
+        } else if (talk1.moment.isAfter(talk2.moment)) {
           return 1;
         } else {
           return 0;
@@ -80,10 +80,10 @@ const TalkItem = React.createClass({
           {talk.description}
         </p>
         <p className="list-group-item-text">
-          {talk.talkTopics.map(topic => topic.name).join(',')}
+          {talk.talkTopics.map(topic => topic.text).join(',')}
         </p>
         <p className="list-group-item-text">
-          {talk.date.fromNow()}
+          {talk.moment.fromNow()}
         </p>
       </div>
     );

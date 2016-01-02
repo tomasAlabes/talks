@@ -2,18 +2,32 @@ import TalksConstants from '../constants/TalksConstants';
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import {EventEmitter} from 'events';
 import Talk from '../model/Talk';
+import firebaseConnection from './FirebaseConnection';
+
+const talksRef = firebaseConnection.child('/talks');
 
 let _talks = new Map();
+
+talksRef.on('value', function(snapshot) {
+  if (snapshot.exists()) {
+    snapshot.forEach(talk => {
+      let receivedTalk = new Talk(talk.val());
+      receivedTalk.id = talk.key();
+      _talks.set(talk.key(), receivedTalk);
+    });
+    console.log('Changes from Firebase!');
+    TalksStore.emitChange();
+  }
+});
+
 const CHANGE_EVENT = 'change';
 
 function create(props) {
-  var id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36);
-  props.id = id;
-  _talks.set(id, new Talk(props));
+  talksRef.push(new Talk(props));
 }
 
 function destroy(id) {
-  delete _talks.delete(id);
+  _talks.delete(id);
 }
 
 const TalksStore = Object.assign({}, EventEmitter.prototype, {
