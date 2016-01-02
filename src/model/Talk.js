@@ -4,7 +4,7 @@ export default class Talk {
     this.id = id;
     this.title = title;
     this.description = description;
-    this.topics = topics;
+    this.talkTopics = topics;
     this.date = date;
   }
 

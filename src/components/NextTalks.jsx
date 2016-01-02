@@ -80,7 +80,7 @@ const TalkItem = React.createClass({
           {talk.description}
         </p>
         <p className="list-group-item-text">
-          {talk.topics.map(topic => topic.name).join(',')}
+          {talk.talkTopics.map(topic => topic.name).join(',')}
         </p>
         <p className="list-group-item-text">
           {talk.date.fromNow()}
