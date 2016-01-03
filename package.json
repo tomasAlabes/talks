@@ -1,14 +1,14 @@
 {
   "name": "Talks",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Web App to vote for subjects and plan talks for them.",
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tomasAlabes/Talks"
+    "url": "https://github.com/tomasAlabes/talks"
   },
   "scripts": {
-    "test": "mocha --reporter nyan --compilers js:babel-core/register --recursive",
+    "test": "mocha --reporter spec --compilers js:babel-core/register --recursive",
     "watch": "gulp watch",
     "build": "gulp build",
     "deploy": "gulp deploy"
@@ -16,12 +16,11 @@
   "author": "Tomas Alabes",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tomasAlabes/Talks/issues"
+    "url": "https://github.com/tomasAlabes/talks/issues"
   },
-  "homepage": "https://github.com/tomasAlabes/Talks",
+  "homepage": "https://github.com/tomasAlabes/talks",
   "dependencies": {
     "firebase": "^2.3.2",
-    "history": "^1.17.0",
     "moment": "^2.10.6",
     "react": "^0.14.5",
     "react-dom": "^0.14.5",
@@ -30,10 +29,12 @@
   "devDependencies": {
     "autoprefixer": "^6.0.0",
     "babel": "^6.3.13",
-    "babel-core": "^6.3.17",
+    "babel-core": "^6.3.26",
     "babel-eslint": "^5.0.0-beta6",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
+    "babel-preset-stage-0": "^6.3.13",
+    "babel-register": "^6.3.13",
     "babelify": "^7.2.0",
     "bootstrap": "^4.0.0-alpha.2",
     "browser-sync": "^2.9.1",
@@ -59,7 +60,6 @@
     "react": "^0.14.3",
     "react-addons-linked-state-mixin": "^0.14.5",
     "react-addons-test-utils": "^0.14.3",
-    "react-bootstrap": "^0.28.1",
     "react-datetime": "^2.0.2",
     "react-dnd": "^2.0.2",
     "react-dnd-html5-backend": "^2.0.2",

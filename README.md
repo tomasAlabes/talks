@@ -9,3 +9,4 @@ Done to play with
 3. Flux
 4. PostCSS
 5. BrowserSync
+6. Babel

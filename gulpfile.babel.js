@@ -21,10 +21,12 @@ import htmlReplace from 'gulp-html-replace';
 import imagemin from 'gulp-imagemin';
 import pngquant from 'imagemin-pngquant';
 import runSequence from 'run-sequence';
+import mocha from 'gulp-mocha';
 
 const paths = {
   bundle: 'app.js',
   srcJsx: 'src/Index.js',
+  srcTest: 'test/**/*.js',
   srcCss: 'src/**/*.css',
   srcImg: 'src/images/**',
   srcLint: ['src/**/*.js', 'test/**/*.js'],
@@ -131,3 +133,5 @@ gulp.task('build', cb => {
   process.env.NODE_ENV = 'production';
   runSequence('clean', ['browserify', 'styles', 'htmlReplace', 'images'], cb);
 });
+
+gulp.task('default', ['build']);
