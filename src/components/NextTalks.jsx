@@ -98,7 +98,10 @@ const TalkItem = React.createClass({
   },
 
   _onChange: function() {
-    this.setState({talk: TalkStore.getTalk(this.state.talk.id)});
+    let talk = TalkStore.getTalk(this.state.talk.id);
+    if (talk !== undefined) { //has been deleted?
+      this.setState({talk: talk});
+    }
   }
 
 });

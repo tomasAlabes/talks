@@ -15,7 +15,13 @@ talksRef.on('value', function(snapshot) {
       receivedTalk.id = talk.key();
       _talks.set(talk.key(), receivedTalk);
     });
-    console.log('Changes from Firebase!');
+    TalksStore.emitChange();
+  }
+});
+
+talksRef.on('child_removed', function(oldChildSnapshot) {
+  if (oldChildSnapshot.exists()) {
+    _talks.delete(oldChildSnapshot.key());
     TalksStore.emitChange();
   }
 });
@@ -27,7 +33,7 @@ function create(props) {
 }
 
 function destroy(id) {
-  _talks.delete(id);
+  talksRef.child(id).set(null);
 }
 
 const TalksStore = Object.assign({}, EventEmitter.prototype, {

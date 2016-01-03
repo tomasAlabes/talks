@@ -102,7 +102,7 @@ export default React.createClass({
     //ToDo Topic not found?
     let topics = this.state.talkTopics.map(topic => TopicsStore.findByName(topic.text));
     //ToDo check fields not empty
-    TalkActions.create({title: this.state.title, description: this.state.description, topics: topics, date: this.state.date});
+    TalkActions.create({title: this.state.title, description: this.state.description, talkTopics: topics, date: this.state.date});
   },
 
   getStoreTopicsNames() {

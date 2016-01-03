@@ -39,9 +39,6 @@ export default React.createClass({
     return topicsToRender;
   },
 
-  /**
-   * Event handler for 'change' events coming from the TodoStore
-   */
   _onChange: function() {
     this.setState(getTopicsState());
   }
@@ -58,6 +55,10 @@ const TopicItem = React.createClass({
 
   componentDidMount: function() {
     TopicsStore.addChangeListener(this._onChange);
+  },
+
+  componentWillUnmount: function() {
+    TopicsStore.removeChangeListener(this._onChange);
   },
 
   render() {
@@ -77,7 +78,10 @@ const TopicItem = React.createClass({
   },
 
   _onChange: function() {
-    this.setState({topic: TopicsStore.getTopic(this.state.topic.id)});
+    let topic = TopicsStore.getTopic(this.state.topic.id);
+    if (topic !== undefined) { //has been deleted?
+      this.setState({topic: topic});
+    }
   }
 
 });

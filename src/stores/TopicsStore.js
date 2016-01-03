@@ -16,7 +16,13 @@ topicsRef.on('value', function(snapshot) {
       receivedTopic.id = topic.key();
       _topics.set(topic.key(), receivedTopic);
     });
-    console.log('Changes from Firebase!');
+    TopicsStore.emitChange();
+  }
+});
+
+topicsRef.on('child_removed', function(oldChildSnapshot) {
+  if (oldChildSnapshot.exists()) {
+    _topics.delete(oldChildSnapshot.key());
     TopicsStore.emitChange();
   }
 });
@@ -30,8 +36,7 @@ function create(text) {
 }
 
 function destroy(id) {
-  //ToDo firebase
-  _topics.delete(id);
+  topicsRef.child(id).set(null);
 }
 
 function like(id){
