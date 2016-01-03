@@ -68,7 +68,7 @@ const TopicItem = React.createClass({
         <span className="label label-default label-pill pull-xs-right">
           {this.state.topic.likes}
         </span>
-      <button className="pull-xs-right" onClick={this.likeTopic}> Like! </button>
+      <img src="src/images/like.svg" className="pull-xs-right button--like" onClick={this.likeTopic} alt="Like" />
     </li>)
 
   },

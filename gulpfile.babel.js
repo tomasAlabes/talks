@@ -25,11 +25,11 @@ import mocha from 'gulp-mocha';
 
 const paths = {
   bundle: 'app.js',
-  srcJsx: 'src/Index.js',
+  srcJsx: 'src/js/Index.js',
   srcTest: 'test/**/*.js',
   srcCss: 'src/**/*.css',
   srcImg: 'src/images/**',
-  srcLint: ['src/**/*.js', 'test/**/*.js'],
+  srcLint: ['src/js/**/*.js', 'test/**/*.js'],
   dist: 'dist',
   distJs: 'dist/js',
   distImg: 'dist/images',

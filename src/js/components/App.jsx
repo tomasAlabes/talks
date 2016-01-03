@@ -1,5 +1,5 @@
 import React from 'react';
-import packageJSON from '../../package.json';
+import packageJSON from '../../../package.json';
 import NewTalk from './NewTalk'
 import NewTopic from './NewTopic'
 import NextTalks from './NextTalks'
@@ -13,11 +13,12 @@ export default React.createClass({
 
     return (
       <div>
-        <nav className="navbar navbar-dark bg-inverse">
-          <a href="/" className="navbar-brand">Talks v{version}</a>
-        </nav>
+        <div className="jumbotron">
+          <h1 className="display-3">Talks</h1>
+          <p className="lead">Web App to vote for subjects and plan talks for them.</p>
+        </div>
 
-        <section>
+          <section>
           <div className="col-md-8">
             <NewTopic />
 
