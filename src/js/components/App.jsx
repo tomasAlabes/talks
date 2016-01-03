@@ -22,8 +22,11 @@ export default React.createClass({
           <div className="col-md-8">
             <NewTopic />
 
-            <TopicsList topics={[new Topic({name:'Javascript'}), new Topic({name:'Angular'})]} />
+            <TopicsList />
 
+
+
+            <hr/>
             <NewTalk />
           </div>
           <div className="col-md-4">

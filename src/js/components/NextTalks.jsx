@@ -20,7 +20,7 @@ export default React.createClass({
   render() {
 
     return (
-      <div>
+      <div className="nextTalks">
         <h2>Next Talks</h2>
         <div className="list-group">
           {this.renderTalks()}
@@ -80,7 +80,7 @@ const TalkItem = React.createClass({
           {talk.description}
         </p>
         <p className="list-group-item-text">
-          {talk.talkTopics.map(topic => topic.text).join(',')}
+          {talk.talkTopics.map(topic => topic.text).join(', ')}
         </p>
         <p className="list-group-item-text">
           {talk.moment.fromNow()}

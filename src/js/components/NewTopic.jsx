@@ -2,6 +2,7 @@ import React from 'react';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
 import Topic from '../model/Topic';
 import TopicActions from '../actions/TopicActions'
+import TopicsStore from '../stores/TopicsStore'
 
 export default React.createClass({
 
@@ -16,7 +17,7 @@ export default React.createClass({
   render() {
 
     return (
-      <form className="form-inline" onSubmit={this.createTopic}>
+      <form className="form-inline addTopicForm" onSubmit={this.createTopic}>
         <h3>Add Topic</h3>
 
         <fieldset className="form-group">
@@ -31,7 +32,10 @@ export default React.createClass({
 
   createTopic(e){
     e.preventDefault();
-    TopicActions.create(this.state.name);
+    if (TopicsStore.findByName(this.state.name) === undefined) {
+      TopicActions.create(this.state.name);
+    }
+    this.setState({name: ''});
   }
 
 });

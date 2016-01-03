@@ -1,11 +1,24 @@
 import React from 'react';
 import TopicsStore from '../stores/TopicsStore';
 import TopicActions from '../actions/TopicActions';
+import { BarChart } from 'react-d3-components';
 
 const getTopicsState = function(){
   return {
     topics: TopicsStore.getAll()
   };
+};
+
+const getChartData = function(){
+  let values = Array.from(TopicsStore.getAll().values()).map(topic => {
+    return {x: topic.text, y: topic.likes};
+  });
+
+  return [{
+    label: 'Topics',
+    values: values
+  }];
+
 };
 
 export default React.createClass({
@@ -23,11 +36,26 @@ export default React.createClass({
   },
 
   render() {
+    let chartData = getChartData();
+    let chart;
+    if (chartData[0].values.length === 0){
+      chart = <span> No Topics Yet </span>
+    } else {
+      chart = <BarChart
+        className="col-sm-6"
+        data={chartData}
+        width={400}
+        height={400}
+        margin={{top: 10, bottom: 50, left: 50, right: 10}} />
+    }
 
     return (
-      <ul className="list-group">
-        {this.generateTopics()}
-      </ul>
+      <div className="topicsContainer">
+        <ul className="list-group topicList col-sm-5">
+          {this.generateTopics()}
+        </ul>
+        {chart}
+      </div>
     )
   },
 
@@ -68,7 +96,7 @@ const TopicItem = React.createClass({
         <span className="label label-default label-pill pull-xs-right">
           {this.state.topic.likes}
         </span>
-      <img src="src/images/like.svg" className="pull-xs-right button--like" onClick={this.likeTopic} alt="Like" />
+      <img src="src/images/like.svg" className="pull-xs-right topicList__likeImg" onClick={this.likeTopic} alt="Like" />
     </li>)
 
   },

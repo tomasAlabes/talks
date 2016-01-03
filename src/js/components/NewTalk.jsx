@@ -29,7 +29,7 @@ export default React.createClass({
   render() {
 
     return (
-      <form onSubmit={this.createTalk}>
+      <form onSubmit={this.createTalk} className="newTalkForm">
         <h3>New Talk</h3>
 
         <fieldset className="form-group">
@@ -103,6 +103,8 @@ export default React.createClass({
     let topics = this.state.talkTopics.map(topic => TopicsStore.findByName(topic.text));
     //ToDo check fields not empty
     TalkActions.create({title: this.state.title, description: this.state.description, talkTopics: topics, date: this.state.date});
+
+    this.setState({title: '', description: '', talkTopics: [], date: ''});
   },
 
   getStoreTopicsNames() {
