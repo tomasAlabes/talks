@@ -3,7 +3,8 @@ body {
 }
 
 .topicList__likeImg {
-    height: 24px;
+    height: 18px;
+    margin: 0 5px;
     float: right;
 
     &:hover {

@@ -43,6 +43,10 @@ function like(id){
   topicsRef.child(id).update({likes: ++_topics.get(id).likes});
 }
 
+function dislike(id){
+  topicsRef.child(id).update({likes: --_topics.get(id).likes});
+}
+
 const TopicsStore = Object.assign({}, EventEmitter.prototype, {
 
   findByName(text){
@@ -94,6 +98,10 @@ AppDispatcher.register(function(action) {
       break;
     case TalksConstants.TOPIC_LIKE:
       like(action.id);
+      TopicsStore.emitChange();
+      break;
+    case TalksConstants.TOPIC_DISLIKE:
+      dislike(action.id);
       TopicsStore.emitChange();
       break;
 

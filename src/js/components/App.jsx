@@ -15,7 +15,7 @@ export default React.createClass({
       <div>
         <div className="jumbotron">
           <h1 className="display-3">Talks</h1>
-          <p className="lead">Web App to vote for subjects and plan talks for them.</p>
+          <p className="lead">Vote for topics and plan talks for them.</p>
         </div>
 
           <section>

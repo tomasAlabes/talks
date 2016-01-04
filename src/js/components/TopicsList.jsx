@@ -97,12 +97,17 @@ const TopicItem = React.createClass({
           {this.state.topic.likes}
         </span>
       <img src="src/images/like.svg" className="topicList__likeImg" onClick={this.likeTopic} alt="Like" />
+      <img src="src/images/dislike.svg" className="topicList__likeImg" onClick={this.dislikeTopic} alt="Dislike" />
     </li>)
 
   },
 
   likeTopic() {
     TopicActions.like(this.state.topic.id);
+  },
+
+  dislikeTopic() {
+    TopicActions.dislike(this.state.topic.id);
   },
 
   _onChange: function() {
