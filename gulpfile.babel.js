@@ -21,7 +21,6 @@ import htmlReplace from 'gulp-html-replace';
 import imagemin from 'gulp-imagemin';
 import pngquant from 'imagemin-pngquant';
 import runSequence from 'run-sequence';
-import mocha from 'gulp-mocha';
 
 const paths = {
   bundle: 'app.js',
