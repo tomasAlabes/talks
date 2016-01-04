@@ -18,8 +18,6 @@ export default React.createClass({
 
     return (
       <form className="form-inline addTopicForm" onSubmit={this.createTopic}>
-        <h3>Add Topic</h3>
-
         <fieldset className="form-group">
           <label htmlFor="newTopicName">Name</label>
           <input id="newTopicName" className="form-control" type="text" valueLink={this.linkState('name')}/>

@@ -29,22 +29,22 @@ export default React.createClass({
   render() {
 
     return (
-      <form onSubmit={this.createTalk} className="newTalkForm">
+      <form onSubmit={this.createTalk} className="form-horizontal newTalkForm">
         <h3>New Talk</h3>
 
         <fieldset className="form-group">
-          <label htmlFor="newTalkTitle">Title</label>
-          <input id="newTalkTitle" className="form-control" type="text" valueLink={this.linkState('title')} placeholder="Javascript + Angular" required/>
+          <label htmlFor="newTalkTitle">Title*</label>
+          <input id="newTalkTitle" className="form-control" type="text" valueLink={this.linkState('title')} placeholder="The title of your awesome talk" required maxLength="50" />
         </fieldset>
 
         <fieldset className="form-group">
           <label htmlFor="newTalkDescription">Description</label>
-          <textarea id="newTalkDescription" className="form-control" rows="3" valueLink={this.linkState('description')} placeholder="Want to know how about Angular?" />
+          <textarea id="newTalkDescription" className="form-control" rows="3" valueLink={this.linkState('description')} placeholder="A description of the size of a tweet." maxLength="140" />
         </fieldset>
 
         <fieldset className="form-group">
-          <label htmlFor="newTalkDate">Date</label>
-          <Datetime value={this.state.date} onChange={this.dateChanged} inputProps={{readOnly:true, required:true}} isValidDate={this.isValidDate} />
+          <label htmlFor="newTalkDate">Date*</label>
+          <Datetime value={this.state.date} onChange={this.dateChanged} inputProps={{readOnly:true, required:true, placeholder: 'When?'}} isValidDate={this.isValidDate} />
         </fieldset>
 
         <fieldset className="form-group">
@@ -53,6 +53,9 @@ export default React.createClass({
                      suggestions={this.state.suggestions}
                      handleDelete={this.handleDelete}
                      handleAddition={this.handleAddition}
+                     placeholder={'What is it about?'}
+                     autofocus={false}
+                     allowDeleteFromEmptyInput={true}
                      handleDrag={this.handleDrag} />
         </fieldset>
 

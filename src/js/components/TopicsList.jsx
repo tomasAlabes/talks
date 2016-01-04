@@ -93,10 +93,10 @@ const TopicItem = React.createClass({
 
     return (<li className="list-group-item">
       {this.state.topic.text}
-        <span className="label label-default label-pill pull-xs-right">
+        <span className="badge">
           {this.state.topic.likes}
         </span>
-      <img src="src/images/like.svg" className="pull-xs-right topicList__likeImg" onClick={this.likeTopic} alt="Like" />
+      <img src="src/images/like.svg" className="topicList__likeImg" onClick={this.likeTopic} alt="Like" />
     </li>)
 
   },

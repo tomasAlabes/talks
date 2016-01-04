@@ -21,7 +21,7 @@ export default React.createClass({
 
     return (
       <div className="nextTalks">
-        <h2>Next Talks</h2>
+        <h3>Next Talks</h3>
         <div className="list-group">
           {this.renderTalks()}
         </div>
@@ -77,7 +77,7 @@ const TalkItem = React.createClass({
           {talk.title}
         </h4>
         <p className="list-group-item-text">
-          {talk.description}
+          {talk.description || 'No Description'}
         </p>
         <p className="list-group-item-text">
           {talk.talkTopics.map(topic => topic.text).join(', ')}

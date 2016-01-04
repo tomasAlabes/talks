@@ -3,7 +3,7 @@ import _ from 'underscore';
 
 export default class Talk {
 
-  constructor({title, description, talkTopics, date}){
+  constructor({title, description = '', talkTopics = [], date}){
     this.title = title;
     this.description = description;
     this.talkTopics = talkTopics;
