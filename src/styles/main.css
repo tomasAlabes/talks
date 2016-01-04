@@ -40,6 +40,9 @@ body {
         font-size: 15px;
     }
 
+    .rdt > input:read-only{
+        background-color: white;
+    }
 }
 
 .topicsContainer{
