@@ -58,9 +58,17 @@ body {
     display: flex;
     flex-direction: column;
 
-    .list-group-item{
+    .list-group-item {
         min-height: 110px;
         flex: 1;
+    }
+
+    .list-group-item-text {
+        margin: 5px 0;
+    }
+
+    .nextTalksItem__description {
+        margin: 10px 0;
     }
 }
 
@@ -69,16 +77,9 @@ body {
     text-decoration: underline;
 }
 
-.nextTalksItem__description {
-    margin: 10px 0;
-}
-
-.nextTalksItem__topics {
-    font-size: 13px;
-}
-
 .nextTalksItem__title {
     display: inline;
+    margin-right: 5px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

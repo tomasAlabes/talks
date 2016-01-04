@@ -18,7 +18,7 @@ export default React.createClass({
         <h4 className="list-group-item-heading nextTalksItem__title">
           {talk.title}
         </h4>
-        <span className="list-group-item-text nextTalksItem__date">
+        <span className="nextTalksItem__date">
             {talk.moment.format('MMM D, h:mm a')}
         </span>
 
@@ -27,6 +27,9 @@ export default React.createClass({
         </p>
         <p className="list-group-item-text nextTalksItem__topics">
           Topics: {talk.talkTopics.map(topic => topic.text).join(', ')}
+        </p>
+        <p className="list-group-item-text">
+          By {talk.author}
         </p>
 
         {this.getZoomLink()}

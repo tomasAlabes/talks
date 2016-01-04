@@ -64,6 +64,11 @@ export default React.createClass({
           <input id="newTalkZoomLink" className="form-control" type="text" valueLink={this.linkState('zoomLink')} placeholder="Zoom link for the talk"/>
         </fieldset>
 
+        <fieldset className="form-group">
+          <label htmlFor="newTalkAuthor">Author*</label>
+          <input id="newTalkAuthor" className="form-control" type="text" valueLink={this.linkState('author')} placeholder="Who's the author?" required/>
+        </fieldset>
+
         <button type="submit" className="btn btn-primary">Create Talk</button>
       </form>
     )
@@ -109,9 +114,9 @@ export default React.createClass({
     e.preventDefault();
     //ToDo Topic not found?
     let topics = this.state.talkTopics.map(topic => TopicsStore.findByName(topic.text));
-    TalkActions.create({title: this.state.title, description: this.state.description, talkTopics: topics, date: this.state.date, zoomLink: this.state.zoomLink});
+    TalkActions.create({title: this.state.title, description: this.state.description, talkTopics: topics, date: this.state.date, zoomLink: this.state.zoomLink, author: this.state.author});
 
-    this.setState({title: '', description: '', talkTopics: [], date: '', zoomLink: ''});
+    this.setState({title: '', description: '', talkTopics: [], date: '', zoomLink: '', author: ''});
   },
 
   getStoreTopicsNames() {
