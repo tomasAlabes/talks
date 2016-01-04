@@ -21,6 +21,12 @@ const getChartData = function(){
 
 };
 
+const onresizeHandler = function(){
+  this.setState({
+    barChartWidth: this.refs.barChartContainer.offsetWidth
+  })
+};
+
 export default React.createClass({
 
   getInitialState: function() {
@@ -29,10 +35,12 @@ export default React.createClass({
 
   componentDidMount: function() {
     TopicsStore.addChangeListener(this._onChange);
+    window.onresize = onresizeHandler.bind(this);
   },
 
   componentWillUnmount: function() {
     TopicsStore.removeChangeListener(this._onChange);
+    window.removeEventListener('resize', onresizeHandler);
   },
 
   render() {
@@ -42,19 +50,20 @@ export default React.createClass({
       chart = <span> No Topics Yet </span>
     } else {
       chart = <BarChart
-        className="col-sm-6"
         data={chartData}
-        width={400}
+        width={this.refs.barChartContainer.offsetWidth}
         height={400}
         margin={{top: 10, bottom: 50, left: 50, right: 10}} />
     }
 
     return (
       <div className="topicsContainer">
-        <ul className="list-group topicList col-sm-5">
+        <ul className="list-group topicList col-lg-3">
           {this.generateTopics()}
         </ul>
-        {chart}
+        <div ref="barChartContainer" className="col-lg-9">
+          {chart}
+        </div>
       </div>
     )
   },
