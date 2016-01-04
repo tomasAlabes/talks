@@ -25,7 +25,7 @@ export default React.createClass({
           {talk.talkTopics.map(topic => topic.text).join(', ')}
         </p>
         <p className="list-group-item-text">
-          {talk.moment.fromNow()}
+          {talk.moment.format('MMM Do')}, {talk.moment.fromNow()}
         </p>
       </div>
     );
