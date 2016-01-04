@@ -36,8 +36,8 @@ body {
         border-radius: 5px;
     }
 
-    .ReactTags__tagInput, .ReactTags__tagInput > input , .ReactTags__selected{
-        width: 100%;
+    .ReactTags__tagInput input, .ReactTags__tagInput input:focus {
+        font-size: 15px;
     }
 
 }
@@ -61,6 +61,27 @@ body {
     }
 }
 
-.barchart {
-    width: 100%;
+.newTalkForm__header, .nextTalks__header {
+    margin-bottom: 20px;
+    text-decoration: underline;
+}
+
+.nextTalksItem__description {
+    margin: 10px 0;
+}
+
+.nextTalksItem__topics {
+    font-size: 13px;
+}
+
+.nextTalksItem__title {
+    display: inline;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.nextTalksItem__date {
+    float: right;
+    font-style: italic;
 }

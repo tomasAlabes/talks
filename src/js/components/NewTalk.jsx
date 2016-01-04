@@ -30,7 +30,7 @@ export default React.createClass({
 
     return (
       <form onSubmit={this.createTalk} className="form-horizontal newTalkForm">
-        <h3>New Talk</h3>
+        <h3 className="newTalkForm__header">New Talk</h3>
 
         <fieldset className="form-group">
           <label htmlFor="newTalkTitle">Title*</label>
@@ -57,6 +57,11 @@ export default React.createClass({
                      autofocus={false}
                      allowDeleteFromEmptyInput={true}
                      handleDrag={this.handleDrag} />
+        </fieldset>
+
+        <fieldset className="form-group">
+          <label htmlFor="newTalkZoomlink">Zoom Link</label>
+          <input id="newTalkZoomLink" className="form-control" type="text" valueLink={this.linkState('zoomLink')} placeholder="Zoom link for the talk"/>
         </fieldset>
 
         <button type="submit" className="btn btn-primary">Create Talk</button>
@@ -104,10 +109,9 @@ export default React.createClass({
     e.preventDefault();
     //ToDo Topic not found?
     let topics = this.state.talkTopics.map(topic => TopicsStore.findByName(topic.text));
-    //ToDo check fields not empty
-    TalkActions.create({title: this.state.title, description: this.state.description, talkTopics: topics, date: this.state.date});
+    TalkActions.create({title: this.state.title, description: this.state.description, talkTopics: topics, date: this.state.date, zoomLink: this.state.zoomLink});
 
-    this.setState({title: '', description: '', talkTopics: [], date: ''});
+    this.setState({title: '', description: '', talkTopics: [], date: '', zoomLink: ''});
   },
 
   getStoreTopicsNames() {

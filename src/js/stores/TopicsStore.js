@@ -44,7 +44,10 @@ function like(id){
 }
 
 function dislike(id){
-  topicsRef.child(id).update({likes: --_topics.get(id).likes});
+  let newLikes = _topics.get(id).likes - 1;
+  if ((newLikes) >= 0) {
+    topicsRef.child(id).update({likes: newLikes});
+  }
 }
 
 const TopicsStore = Object.assign({}, EventEmitter.prototype, {

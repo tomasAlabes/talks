@@ -22,7 +22,7 @@ export default React.createClass({
 
     return (
       <div className="nextTalks">
-        <h3>Next Talks</h3>
+        <h3 className="nextTalks__header">Next Talks</h3>
         <div className="list-group">
           {this.renderTalks()}
         </div>
