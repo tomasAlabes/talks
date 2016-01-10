@@ -22,6 +22,7 @@ const TopicListItem = React.createClass({
 
     return (<li className="list-group-item">
       {this.state.topic.text}
+      <img src="src/images/delete.svg" className="topicList__likeImg" onClick={this.deleteTopic} alt="Delete" />
         <span className="badge">
           {this.state.topic.likes}
         </span>
@@ -37,6 +38,10 @@ const TopicListItem = React.createClass({
 
   dislikeTopic() {
     TopicActions.dislike(this.state.topic.id);
+  },
+
+  deleteTopic() {
+    TopicActions.destroy(this.state.topic.id);
   },
 
   _onChange: function() {
