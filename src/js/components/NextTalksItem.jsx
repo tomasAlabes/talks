@@ -1,6 +1,7 @@
 import React from 'react';
 import TalkStore from '../stores/TalksStore';
 import EditTalkModal from './EditTalkModal'
+import TalkActions from '../actions/TalkActions'
 
 export default React.createClass({
 
@@ -18,6 +19,7 @@ export default React.createClass({
       <div className="list-group-item">
         <h4 className="list-group-item-heading nextTalksItem__title">
           {talk.title}
+          <img className="topicList__likeImg" src="src/images/delete.svg" alt="delete" onClick={this.deleteTalk} />
           <img className="topicList__likeImg" src="src/images/edit.svg" alt="edit" onClick={this.editTalk} />
           <EditTalkModal ref="editModal" talk={this.state.talk} />
         </h4>
@@ -71,6 +73,10 @@ export default React.createClass({
 
   editTalk(){
     this.refs.editModal.show();
+  },
+
+  deleteTalk(){
+    TalkActions.destroy(this.state.talk.id);
   }
 
 });

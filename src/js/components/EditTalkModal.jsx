@@ -97,8 +97,7 @@ export default React.createClass({
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" className="btn btn-danger" onClick={this.deleteTalk}>Delete</button>
-              <button type="button" className="btn btn-success" onClick={this.saveChanges}>Save changes</button>
+              <button type="button" className="btn btn-primary" onClick={this.saveChanges}>Save changes</button>
             </div>
           </div>
         </div>
@@ -146,11 +145,6 @@ export default React.createClass({
     //ToDo Topic not found?
     let topics = this.state.talkTopics.map(topic => TopicsStore.findByName(topic.text));
     TalkActions.edit(this.state.id, {title: this.state.title, description: this.state.description, talkTopics: topics, date: this.state.date.toISOString(), zoomLink: this.state.zoomLink, author: this.state.author});
-    this.hide();
-  },
-
-  deleteTalk(){
-    TalkActions.destroy(this.state.id);
     this.hide();
   },
 
