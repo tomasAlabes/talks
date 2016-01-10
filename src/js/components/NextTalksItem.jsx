@@ -1,5 +1,6 @@
 import React from 'react';
 import TalkStore from '../stores/TalksStore';
+import EditTalkModal from './EditTalkModal'
 
 export default React.createClass({
 
@@ -17,11 +18,9 @@ export default React.createClass({
       <div className="list-group-item">
         <h4 className="list-group-item-heading nextTalksItem__title">
           {talk.title}
+          <img className="topicList__likeImg" src="src/images/edit.svg" alt="edit" onClick={this.editTalk} />
+          <EditTalkModal talk={this.state.talk} />
         </h4>
-        <span className="nextTalksItem__date">
-            {talk.moment.format('MMM D, h:mm a')}
-        </span>
-
         <p className="list-group-item-text nextTalksItem__description">
           {talk.description || 'No Description'}
         </p>
@@ -33,6 +32,10 @@ export default React.createClass({
         </p>
 
         {this.getZoomLink()}
+
+        <span className="nextTalksItem__date">
+          {talk.moment.format('MMM D, h:mm a')}
+        </span>
       </div>
     );
   },
@@ -45,7 +48,7 @@ export default React.createClass({
           <a href={this.state.talk.zoomLink}>Zoom Link</a>
         </p>);
     }else{
-      zoomlink = "";
+      zoomlink = '';
     }
 
     return zoomlink;
@@ -64,6 +67,10 @@ export default React.createClass({
     if (talk !== undefined) { //has been deleted?
       this.setState({talk: talk});
     }
+  },
+
+  editTalk(){
+    EditTalkModal.show();
   }
 
 });

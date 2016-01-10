@@ -10,6 +10,14 @@ const TalkActions = {
     });
   },
 
+  edit: function(id, talkProps) {
+    AppDispatcher.dispatch({
+      actionType: TalksConstants.TALK_EDIT,
+      id: id,
+      props: talkProps
+    });
+  },
+
   destroy: function(id) {
     AppDispatcher.dispatch({
       actionType: TalksConstants.TALK_DESTROY,

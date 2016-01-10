@@ -7,5 +7,6 @@ export default keyMirror({
   TOPIC_DISLIKE: null,
 
   TALK_CREATE: null,
+  TALK_EDIT: null,
   TALK_DESTROY: null
 });

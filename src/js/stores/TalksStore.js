@@ -32,6 +32,10 @@ function create(props) {
   talksRef.push(new Talk(props));
 }
 
+function edit(id, props) {
+  talksRef.child(id).update(props);
+}
+
 function destroy(id) {
   talksRef.child(id).set(null);
 }
@@ -72,6 +76,10 @@ AppDispatcher.register(function(action) {
   switch (action.actionType) {
     case TalksConstants.TALK_CREATE:
       create(action.props);
+      TalksStore.emitChange();
+      break;
+    case TalksConstants.TALK_EDIT:
+      edit(action.id, action.props);
       TalksStore.emitChange();
       break;
     case TalksConstants.TALK_DESTROY:

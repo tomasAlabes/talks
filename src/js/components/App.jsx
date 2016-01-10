@@ -9,8 +9,6 @@ import Topic from '../model/Topic'
 export default React.createClass({
 
   render() {
-    const version = packageJSON.version;
-
     return (
       <div>
         <div className="jumbotron">
