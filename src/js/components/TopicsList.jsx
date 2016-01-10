@@ -59,10 +59,10 @@ export default React.createClass({
 
     return (
       <div className="topicsContainer">
-        <ul className="list-group topicList col-lg-3">
+        <ul className="list-group topicList col-lg-4">
           {this.generateTopics()}
         </ul>
-        <div ref="barChartContainer" className="col-lg-9">
+        <div ref="barChartContainer" className="col-lg-8">
           {chart}
         </div>
       </div>

@@ -19,7 +19,7 @@ export default React.createClass({
         <h4 className="list-group-item-heading nextTalksItem__title">
           {talk.title}
           <img className="topicList__likeImg" src="src/images/edit.svg" alt="edit" onClick={this.editTalk} />
-          <EditTalkModal talk={this.state.talk} />
+          <EditTalkModal ref="editModal" talk={this.state.talk} />
         </h4>
         <p className="list-group-item-text nextTalksItem__description">
           {talk.description || 'No Description'}
@@ -70,7 +70,7 @@ export default React.createClass({
   },
 
   editTalk(){
-    EditTalkModal.show();
+    this.refs.editModal.show();
   }
 
 });

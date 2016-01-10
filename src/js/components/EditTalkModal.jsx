@@ -24,9 +24,11 @@ export default React.createClass({
     };
   },
 
-  statics: {
-    show: () => { $('#editTalkModal').modal(); },
-    hide: () => { $('#editTalkModal').modal('hide'); }
+  show() {
+    $(this.refs.modal).modal();
+  },
+  hide() {
+    $(this.refs.modal).modal('hide');
   },
 
   componentDidMount: function() {
@@ -40,7 +42,7 @@ export default React.createClass({
   render() {
   
     return (
-      <div className="modal fade" id="editTalkModal" tabIndex="-1" role="dialog" aria-labelledby="editTalkModalLabel">
+      <div ref="modal" className="modal fade" tabIndex="-1" role="dialog" aria-labelledby="editTalkModalLabel">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-header">
@@ -95,7 +97,8 @@ export default React.createClass({
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" className="btn btn-primary" onClick={this.saveChanges}>Save changes</button>
+              <button type="button" className="btn btn-danger" onClick={this.deleteTalk}>Delete</button>
+              <button type="button" className="btn btn-success" onClick={this.saveChanges}>Save changes</button>
             </div>
           </div>
         </div>
@@ -139,11 +142,16 @@ export default React.createClass({
     this.setState({ topics: topics });
   },
 
-  saveChanges(e){
+  saveChanges(){
     //ToDo Topic not found?
     let topics = this.state.talkTopics.map(topic => TopicsStore.findByName(topic.text));
     TalkActions.edit(this.state.id, {title: this.state.title, description: this.state.description, talkTopics: topics, date: this.state.date.toISOString(), zoomLink: this.state.zoomLink, author: this.state.author});
-    this.constructor.hide();
+    this.hide();
+  },
+
+  deleteTalk(){
+    TalkActions.destroy(this.state.id);
+    this.hide();
   },
 
   getStoreTopicsNames() {

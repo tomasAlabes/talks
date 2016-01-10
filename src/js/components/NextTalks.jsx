@@ -51,7 +51,13 @@ export default React.createClass({
     for (let talk of orderedTalks) {
       talksToRender.push(<NextTalksItem talk={talk} key={talk.id} />);
     }
-    return talksToRender;
+
+    if (talksToRender.length === 0){
+      return <p>No Talks Yet.</p>;
+    }else{
+      return talksToRender;
+    }
+
   },
 
   _onChange: function() {
