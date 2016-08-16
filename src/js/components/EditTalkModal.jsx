@@ -1,8 +1,6 @@
 import React from 'react';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
-import Talk from '../model/Talk';
 import TalkActions from '../actions/TalkActions';
-import TopicActions from '../actions/TopicActions';
 import TopicsStore from '../stores/TopicsStore';
 import Datetime from 'react-datetime';
 import { WithContext as ReactTags } from 'react-tag-input';
@@ -20,7 +18,8 @@ export default React.createClass({
       author: this.props.talk.author,
       description: this.props.talk.description,
       date: this.props.talk.moment,
-      zoomLink: this.props.talk.zoomLink
+      zoomLink: this.props.talk.zoomLink,
+      wikiLink: this.props.talk.wikiLink
     };
   },
 
@@ -90,6 +89,12 @@ export default React.createClass({
                 </fieldset>
 
                 <fieldset className="form-group">
+                  <label htmlFor="newTalkWikilink">Wiki Link</label>
+                  <input id="newTalkWikilink" className="form-control" type="text"
+                         valueLink={this.linkState('wikiLink')} placeholder="Wiki link for the talk"/>
+                </fieldset>
+
+                <fieldset className="form-group">
                   <label htmlFor="newTalkAuthor">Author*</label>
                   <input id="newTalkAuthor" className="form-control" type="text" valueLink={this.linkState('author')}
                          placeholder="Who's the author?" required/>
@@ -144,7 +149,7 @@ export default React.createClass({
   saveChanges(){
     //ToDo Topic not found?
     let topics = this.state.talkTopics.map(topic => TopicsStore.findByName(topic.text));
-    TalkActions.edit(this.state.id, {title: this.state.title, description: this.state.description, talkTopics: topics, date: this.state.date.toISOString(), zoomLink: this.state.zoomLink, author: this.state.author});
+    TalkActions.edit(this.state.id, {title: this.state.title, description: this.state.description, talkTopics: topics, date: this.state.date ? this.state.date.toISOString() : '', zoomLink: this.state.zoomLink, author: this.state.author, wikiLink: this.state.wikiLink});
     this.hide();
   },
 

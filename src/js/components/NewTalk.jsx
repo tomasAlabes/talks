@@ -63,6 +63,11 @@ export default React.createClass({
         </fieldset>
 
         <fieldset className="form-group">
+          <label htmlFor="newWikiZoomLink">Wiki Link</label>
+          <input id="newWikiZoomLink" className="form-control" type="text" valueLink={this.linkState('wikiLink')} placeholder="Wiki link for the talk"/>
+        </fieldset>
+
+        <fieldset className="form-group">
           <label htmlFor="newTalkAuthor">Author*</label>
           <input id="newTalkAuthor" className="form-control" type="text" valueLink={this.linkState('author')} placeholder="Who's the author?" required/>
         </fieldset>
@@ -112,9 +117,9 @@ export default React.createClass({
     e.preventDefault();
     //ToDo Topic not found?
     let topics = this.state.talkTopics.map(topic => TopicsStore.findByName(topic.text));
-    TalkActions.create({title: this.state.title, description: this.state.description, talkTopics: topics, date: this.state.date, zoomLink: this.state.zoomLink, author: this.state.author});
+    TalkActions.create({title: this.state.title, description: this.state.description, talkTopics: topics, date: this.state.date, zoomLink: this.state.zoomLink, author: this.state.author, wikiLink: this.state.wikiLink});
 
-    this.setState({title: '', description: '', talkTopics: [], date: '', zoomLink: '', author: ''});
+    this.setState({title: '', description: '', talkTopics: [], date: '', zoomLink: '', author: '', wikiLink: ''});
   },
 
   getStoreTopicsNames() {

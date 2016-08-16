@@ -34,6 +34,7 @@ export default React.createClass({
         </p>
 
         {this.getZoomLink()}
+        {this.getWikiLink()}
 
         <span className="nextTalksItem__date">
           {talk.date ? talk.moment.format('MMM D, h:mm a') : ''}
@@ -54,6 +55,20 @@ export default React.createClass({
     }
 
     return zoomlink;
+  },
+
+  getWikiLink(){
+    let wikilink;
+    if(this.state.talk.wikiLink !== '') {
+	    wikilink = (
+        <p className="list-group-item-text">
+          <a href={this.state.talk.wikiLink}>Wiki Link</a>
+        </p>);
+    }else{
+    	wikilink = '';
+    }
+
+    return wikilink;
   },
 
   componentDidMount: function() {
