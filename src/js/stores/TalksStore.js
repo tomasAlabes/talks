@@ -50,6 +50,18 @@ const TalksStore = Object.assign({}, EventEmitter.prototype, {
     return _talks;
   },
 
+  getScheduledTalks(){
+    return new Map(
+      [..._talks].filter(([id, talk]) => talk.date !== '')
+    );
+  },
+
+  getUnscheduledTalks(){
+    return new Map(
+      [..._talks].filter(([id, talk]) => talk.date === '')
+    );
+  },
+  
   emitChange() {
     this.emit(CHANGE_EVENT);
   },

@@ -36,7 +36,7 @@ export default React.createClass({
         {this.getZoomLink()}
 
         <span className="nextTalksItem__date">
-          {talk.moment.format('MMM D, h:mm a')}
+          {talk.date ? talk.moment.format('MMM D, h:mm a') : ''}
         </span>
       </div>
     );

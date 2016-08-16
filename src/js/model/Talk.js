@@ -3,7 +3,7 @@ import _ from 'underscore';
 
 export default class Talk {
 
-  constructor({title, description = '', talkTopics = [], date, zoomLink = '', author}){
+  constructor({title, description = '', talkTopics = [], date = '', zoomLink = '', author}){
     this.title = title;
     this.description = description;
     this.talkTopics = talkTopics;
@@ -13,7 +13,7 @@ export default class Talk {
   }
 
   get moment(){
-    return momentjs(this.date);
+    return this.date !== '' ? momentjs(this.date) : '';
   }
 
 }

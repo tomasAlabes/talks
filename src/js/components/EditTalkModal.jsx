@@ -65,9 +65,9 @@ export default React.createClass({
                 </fieldset>
 
                 <fieldset className="form-group">
-                  <label htmlFor="newTalkDate">Date*</label>
+                  <label htmlFor="newTalkDate">Date</label>
                   <Datetime value={this.state.date} onChange={this.dateChanged}
-                            inputProps={{readOnly:true, required:true, placeholder: 'When?'}}
+                            inputProps={{readOnly:true, placeholder: 'When?'}}
                             isValidDate={this.isValidDate}/>
                 </fieldset>
 

@@ -1,10 +1,9 @@
 import React from 'react';
-import packageJSON from '../../../package.json';
 import NewTalk from './NewTalk'
 import NewTopic from './NewTopic'
 import NextTalks from './NextTalks'
+import UnscheduledTalks from './UnscheduledTalks'
 import TopicsList from './TopicsList'
-import Topic from '../model/Topic'
 
 export default React.createClass({
 
@@ -29,6 +28,7 @@ export default React.createClass({
           </div>
           <div className="col-md-4">
             <NextTalks />
+            <UnscheduledTalks />
           </div>
         </section>
 

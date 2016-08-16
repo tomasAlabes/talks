@@ -6,7 +6,7 @@ export default React.createClass({
   
   getInitialState(){
     return {
-      talks: TalkStore.getScheduledTalks()
+      talks: TalkStore.getUnscheduledTalks()
     }
   },
   
@@ -22,7 +22,7 @@ export default React.createClass({
     
     return (
       <div className="nextTalks">
-        <h3 className="nextTalks__header">Next Talks</h3>
+        <h3 className="nextTalks__header">Unscheduled Talks</h3>
         <div className="list-group">
           {this.renderTalks()}
         </div>
@@ -32,23 +32,8 @@ export default React.createClass({
   
   renderTalks(){
     let talks = Array.from(this.state.talks.values());
-    //filter the past ones
-    //order them by date
-    let orderedTalks = talks
-      .filter(talk => talk.moment.isAfter(new Date()))
-      .sort((talk1, talk2) => {
-        if (talk1.moment.isBefore(talk2.moment)) {
-          return -1;
-        } else if (talk1.moment.isAfter(talk2.moment)) {
-          return 1;
-        } else {
-          return 0;
-        }
-        
-      });
-    
     let talksToRender = [];
-    for (let talk of orderedTalks) {
+    for (let talk of talks) {
       talksToRender.push(<NextTalksItem talk={talk} key={talk.id}/>);
     }
     
@@ -61,7 +46,7 @@ export default React.createClass({
   },
   
   _onChange: function () {
-    this.setState({talks:TalkStore.getScheduledTalks()});
+    this.setState({talks:TalkStore.getUnscheduledTalks()});
   }
   
 });

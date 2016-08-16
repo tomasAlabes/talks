@@ -1,8 +1,6 @@
 import React from 'react';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
-import Talk from '../model/Talk';
 import TalkActions from '../actions/TalkActions';
-import TopicActions from '../actions/TopicActions';
 import TopicsStore from '../stores/TopicsStore';
 import Datetime from 'react-datetime';
 import { WithContext as ReactTags } from 'react-tag-input';
@@ -43,8 +41,8 @@ export default React.createClass({
         </fieldset>
 
         <fieldset className="form-group">
-          <label htmlFor="newTalkDate">Date*</label>
-          <Datetime value={this.state.date} onChange={this.dateChanged} inputProps={{readOnly:true, required:true, placeholder: 'When?'}} isValidDate={this.isValidDate} />
+          <label htmlFor="newTalkDate">Date</label>
+          <Datetime value={this.state.date} onChange={this.dateChanged} inputProps={{readOnly:true, placeholder: 'When?'}} isValidDate={this.isValidDate} />
         </fieldset>
 
         <fieldset className="form-group">
