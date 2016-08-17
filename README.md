@@ -14,8 +14,9 @@ See `package.json` "scripts" or `gulpfile.babel.js` for more.
 ### To Do's
 
 1. Make Firebase DB configurable
-2. Improve Docs
-3. Cache-Busting
+2. Tests (mocking firebase was a blocker)
+3. Improve Docs
+4. Cache-Busting
 
 Done to learn
 
