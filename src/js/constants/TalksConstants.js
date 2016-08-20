@@ -8,5 +8,10 @@ export default keyMirror({
 
   TALK_CREATE: null,
   TALK_EDIT: null,
-  TALK_DESTROY: null
+  TALK_DESTROY: null,
+
+  USER_CREATE: null,
+  USER_EDIT: null,
+  USER_LOGIN: null,
+  USER_LOGOUT: null
 });

@@ -4,12 +4,14 @@ import NewTopic from './NewTopic'
 import NextTalks from './NextTalks'
 import UnscheduledTalks from './UnscheduledTalks'
 import TopicsList from './TopicsList'
+import UserNavBar from './UserNavBar'
 
 export default React.createClass({
 
   render() {
     return (
       <div>
+        <UserNavBar />
         <div className="jumbotron">
           <h1 className="display-3">Talks</h1>
           <p className="lead">Vote for topics and plan talks for them.</p>
