@@ -1,10 +1,7 @@
 import React from 'react';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
-import TalkActions from '../actions/TalkActions';
 import UserActions from '../actions/UserActions';
-import TopicsStore from '../stores/TopicsStore';
 import UsersStore from '../stores/UsersStore';
-import Datetime from 'react-datetime';
 import { WithContext as ReactTags } from 'react-tag-input';
 
 export default React.createClass({
@@ -75,10 +72,6 @@ export default React.createClass({
         else{
             alert("User not found");
         }
-  },
-
-  getAllTopics(){
-    return Array.from(TopicsStore.getAll().values());
   }
 
 });

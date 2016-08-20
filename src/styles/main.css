@@ -2,6 +2,14 @@ body {
 
 }
 
+.list-group-item-heading {
+    padding-bottom: 5px;
+}
+
+.tick text {
+    font-size: 12px;
+}
+
 .topicList__likeImg {
     height: 15px;
     margin: 0 5px;

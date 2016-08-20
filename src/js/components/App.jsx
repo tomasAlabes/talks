@@ -4,12 +4,7 @@ import NewTopic from './NewTopic'
 import NextTalks from './NextTalks'
 import UnscheduledTalks from './UnscheduledTalks'
 import TopicsList from './TopicsList'
-import Register from './register'
-import Login from './login'
 import UserNavBar from './UserNavBar'
-import UsersStore from '../stores/UsersStore'
-import UserActions from '../actions/UserActions'
-
 
 export default React.createClass({
 
@@ -41,6 +36,5 @@ export default React.createClass({
 
       </div>
     )
-  },
-
+  }
 });

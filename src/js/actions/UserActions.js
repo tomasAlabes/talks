@@ -1,7 +1,5 @@
-
 import TalksConstants from '../constants/TalksConstants';
 import AppDispatcher from '../dispatcher/AppDispatcher';
-import TopicsStore from '../stores/TopicsStore';
 
 const UserActions = {
 
@@ -31,13 +29,7 @@ const UserActions = {
           AppDispatcher.dispatch({
             actionType: TalksConstants.USER_LOGOUT,
           });
-   },
-
-  getAllTopics(){
-      return Array.from(TopicsStore.getAll().values());
-    }
-
-
+   }
 
 };
 

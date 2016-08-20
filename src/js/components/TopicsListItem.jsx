@@ -49,12 +49,9 @@ const TopicListItem = React.createClass({
   dislikeTopic() {
     let currentUser = UsersStore.getCurrentUser();
     if(currentUser !== null && currentUser !== undefined && currentUser.topics === undefined){
-       TopicActions.dislike(this.state.topic.id);
        currentUser.topics = [];
-       currentUser.topics.push(this.state.topic.text);
-       UserActions.edit(UsersStore.getCurrentUserId(),currentUser);
     }
-    else if(currentUser !== null && currentUser !== undefined && (currentUser.topics != undefined) && (!currentUser.topics.includes(this.state.topic.text))){
+    if(currentUser !== null && currentUser !== undefined  && (!currentUser.topics.includes(this.state.topic.text))){
        TopicActions.dislike(this.state.topic.id);
        currentUser.topics.push(this.state.topic.text);
        UserActions.edit(UsersStore.getCurrentUserId(),currentUser);

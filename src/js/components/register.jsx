@@ -1,9 +1,8 @@
 import React from 'react';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
-import TalkActions from '../actions/TalkActions';
 import UserActions from '../actions/UserActions';
 import TopicsStore from '../stores/TopicsStore';
-import Datetime from 'react-datetime';
+import UsersStore from '../stores/UsersStore';
 import { WithContext as ReactTags } from 'react-tag-input';
 
 export default React.createClass({
@@ -91,24 +90,23 @@ export default React.createClass({
 
   createUser(e){
       e.preventDefault();
-      //ToDo Topic not found?
-      //let topics = this.state.talkTopics.map(topic => TopicsStore.findByName(topic.text));
-      let userProps = {name: this.state.name, guid: this.state.guid,  emailid: this.state.emailid, password: this.state.password};
-      let topicName = this.getAllTopics().map(topic => topic.text);
-      userProps.topics = topicName;
-      UserActions.create(userProps);
+      if (UsersStore.findUserByEmail(this.state.emailid) === undefined) {
+          let userProps = {name: this.state.name, guid: this.state.guid,  emailid: this.state.emailid, password: this.state.password};
+          let topicName = this.getAllTopics().map(topic => topic.text);
+          userProps.topics = topicName;
+          UserActions.create(userProps);
 
-      this.setState({name: '', guid: '',  emailid: '', password: ''});
-      this.hide();
+          this.setState({name: '', guid: '',  emailid: '', password: ''});
+          this.hide();
+      }
+      else{
+        alert("Email already used");
+      }
   },
-  
-
 
   getStoreTopicsNames() {
     return this.getAllTopics().map(topic => topic.text);
   },
-
-
 
   getAllTopics(){
     return Array.from(TopicsStore.getAll().values());

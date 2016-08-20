@@ -1,7 +1,6 @@
 import TalksConstants from '../constants/TalksConstants';
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import {EventEmitter} from 'events';
-import Talk from '../model/Talk';
 import User from '../model/User';
 import firebaseConnection from './FirebaseConnection';
 
@@ -14,9 +13,10 @@ let currentUser = null;
 usersRef.on('value', function(snapshot) {
   if (snapshot.exists()) {
     snapshot.forEach(user => {
-      let receivedTalk = new User(user.val());
-      receivedTalk.id = user.key();
-      _users.set(user.key(), receivedTalk);
+      let receivedUser = new User(user.val());
+      receivedUser.id = user.key();
+      _users.set(user.key(), receivedUser);
+      if (currentUser !== null && receivedUser.emailid === currentUser.emailid) currentUser = receivedUser;
     });
     UsersStore.emitChange();
   }
