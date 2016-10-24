@@ -6,7 +6,7 @@ import UnscheduledTalks from './UnscheduledTalks'
 import TopicsList from './TopicsList'
 
 export default React.createClass({
-
+  
   render() {
     return (
       <div>
@@ -14,15 +14,13 @@ export default React.createClass({
           <h1 className="display-3">Talks</h1>
           <p className="lead">Vote for topics and plan talks for them.</p>
         </div>
-
-          <section>
+        
+        <section>
           <div className="col-md-8">
             <NewTopic />
-
+            
             <TopicsList />
-
-
-
+            
             <hr/>
             <NewTalk />
           </div>
@@ -31,7 +29,7 @@ export default React.createClass({
             <UnscheduledTalks />
           </div>
         </section>
-
+      
       </div>
     )
   }

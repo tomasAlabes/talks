@@ -12,8 +12,8 @@ talksRef.on('value', function(snapshot) {
   if (snapshot.exists()) {
     snapshot.forEach(talk => {
       let receivedTalk = new Talk(talk.val());
-      receivedTalk.id = talk.key();
-      _talks.set(talk.key(), receivedTalk);
+      receivedTalk.id = talk.key;
+      _talks.set(talk.key, receivedTalk);
     });
     TalksStore.emitChange();
   }
@@ -21,7 +21,7 @@ talksRef.on('value', function(snapshot) {
 
 talksRef.on('child_removed', function(oldChildSnapshot) {
   if (oldChildSnapshot.exists()) {
-    _talks.delete(oldChildSnapshot.key());
+    _talks.delete(oldChildSnapshot.key);
     TalksStore.emitChange();
   }
 });

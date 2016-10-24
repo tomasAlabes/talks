@@ -13,8 +13,8 @@ topicsRef.on('value', function(snapshot) {
     snapshot.forEach(topic => {
       // Recreating Topic every time...
       let receivedTopic = new Topic(topic.val());
-      receivedTopic.id = topic.key();
-      _topics.set(topic.key(), receivedTopic);
+      receivedTopic.id = topic.key;
+      _topics.set(topic.key, receivedTopic);
     });
     TopicsStore.emitChange();
   }
@@ -22,7 +22,7 @@ topicsRef.on('value', function(snapshot) {
 
 topicsRef.on('child_removed', function(oldChildSnapshot) {
   if (oldChildSnapshot.exists()) {
-    _topics.delete(oldChildSnapshot.key());
+    _topics.delete(oldChildSnapshot.key);
     TopicsStore.emitChange();
   }
 });

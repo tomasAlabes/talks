@@ -1,5 +1,13 @@
-import Firebase from 'firebase';
+import firebase from 'firebase';
 
-const firebaseConnection = new Firebase('https://techtalks.firebaseio.com/');
+var config = {
+  apiKey: 'AIzaSyB3797_HfW6PWjXLicJf0_ZDXZUDeJn1uY',
+  authDomain: 'techtalks.firebaseapp.com',
+  databaseURL: 'https://techtalks.firebaseio.com',
+  storageBucket: '',
+  messagingSenderId: '644612690481'
+};
 
-export default firebaseConnection;
+firebase.initializeApp(config);
+
+export default firebase.database().ref();
